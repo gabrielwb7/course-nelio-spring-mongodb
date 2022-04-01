@@ -19,6 +19,15 @@ public class UserService {
     }
 
     public User findById(String id) {
-        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("O usuario com esse id" + id + "não existe"));
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("O usuario com esse id " + id + " não existe"));
+    }
+
+    public User insert(User user) {
+        return repository.save(user);
+    }
+
+    public void delete(String id) {
+        User user = findById(id);
+        repository.deleteById(user.getId());
     }
 }
