@@ -1,5 +1,6 @@
 package com.gabrielr.courseneliospringmongodb.domain;
 
+import com.gabrielr.courseneliospringmongodb.dto.AuthorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     @Override
     public boolean equals(Object o) {

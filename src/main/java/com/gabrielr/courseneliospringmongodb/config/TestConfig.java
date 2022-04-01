@@ -2,6 +2,7 @@ package com.gabrielr.courseneliospringmongodb.config;
 
 import com.gabrielr.courseneliospringmongodb.domain.Post;
 import com.gabrielr.courseneliospringmongodb.domain.User;
+import com.gabrielr.courseneliospringmongodb.dto.AuthorDTO;
 import com.gabrielr.courseneliospringmongodb.repositories.PostRepository;
 import com.gabrielr.courseneliospringmongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,17 @@ public class TestConfig implements CommandLineRunner {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
+        postRepository.deleteAll();
 
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null,sdf.parse("21/03/2022"), "Partiu Viagem!!", "Bora sampa, abraços!!", maria);
-        Post post2 = new Post(null,sdf.parse("24/03/2022"), "Bom dia!", "Sextou!!", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null,sdf.parse("21/03/2022"), "Partiu Viagem!!", "Bora sampa, abraços!!", new AuthorDTO(maria));
+        Post post2 = new Post(null,sdf.parse("01/04/2022"), "Bom dia!", "Sextou!!", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(post1,post2));
     }
 }
