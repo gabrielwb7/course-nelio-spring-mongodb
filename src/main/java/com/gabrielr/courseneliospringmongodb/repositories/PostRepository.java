@@ -1,10 +1,13 @@
 package com.gabrielr.courseneliospringmongodb.repositories;
 
 import com.gabrielr.courseneliospringmongodb.domain.Post;
-import com.gabrielr.courseneliospringmongodb.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PostRepository extends MongoRepository<Post, String> {
+
+    List<Post> findByTitleContainingIgnoreCase(String text);
 }

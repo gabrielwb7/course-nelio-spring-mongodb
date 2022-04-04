@@ -20,6 +20,10 @@ public class PostService {
         return repository.findAll();
     }
 
+    public List<Post> findByTitle(String text) {
+        return repository.findByTitleContainingIgnoreCase(text);
+    }
+
     public Post findById(String id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("O post com esse id " + id + " não existe"));
     }
