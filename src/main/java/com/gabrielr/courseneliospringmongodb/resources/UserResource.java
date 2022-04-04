@@ -1,5 +1,6 @@
 package com.gabrielr.courseneliospringmongodb.resources;
 
+import com.gabrielr.courseneliospringmongodb.domain.Post;
 import com.gabrielr.courseneliospringmongodb.domain.User;
 import com.gabrielr.courseneliospringmongodb.dto.UserDTO;
 import com.gabrielr.courseneliospringmongodb.services.UserService;
@@ -59,5 +60,12 @@ public class UserResource {
        service.delete(id);
 
        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = service.findById(id);
+
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
